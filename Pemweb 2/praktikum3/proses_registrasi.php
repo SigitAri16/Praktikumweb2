@@ -108,6 +108,8 @@ function kategori_skill($total_skor) {
         return "Baik";
     } elseif ($total_skor <= 150) {
         return "Sangat Baik";
+    } elseif ($total_skor <= 180) {
+        return "Lo sepuh bang";
     }
 }
 ?>
