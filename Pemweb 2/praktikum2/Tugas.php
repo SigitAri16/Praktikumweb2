@@ -5,11 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Form Belanja</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .container {
+        max-width: 600px;
+        margin-top: 50px;
+    }
+    .result-card {
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+    .result-header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 10px 10px 0 0;
+    }
+    .result-content {
+        padding: 15px;
+    }
+    .result-item {
+        margin-bottom: 10px;
+    }
+</style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Form Belanja</h2>
+    <h2 class="text-center mb-4">Form Belanja</h2>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label for="customer">Customer:</label>
@@ -20,19 +44,22 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="produk" id="produk1" value="Produk 1">
                 <label class="form-check-label" for="produk1">
-                    Kemeja - Rp. 50.000
+                    Kemeja - Rp. 50.000 <br>
+                    <img src="download.jpeg" alt="Kemeja" style="width:100px;height:100px;">
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="produk" id="produk2" value="Produk 2">
                 <label class="form-check-label" for="produk2">
-                    PS 5 - Rp. 5.000.000
+                    PS 5 - Rp. 5.000.000 <br>
+                    <img src="Ps5.jpeg" alt="PS 5" style="width:100px;height:100px;">
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="produk" id="produk3" value="Produk 3">
                 <label class="form-check-label" for="produk3">
-                    Iphone 12 - Rp. 10.000.000
+                    Iphone 12 - Rp. 10.000.000 <br>
+                    <img src="ip.jpeg" alt="Iphone 12" style="width:100px;height:100px;">
                 </label>
             </div>
         </div>
@@ -71,13 +98,16 @@
         $_SESSION['total_pembelian'] += $jumlah;
         $_SESSION['total_harga'] += $total_harga_produk;
         
-        echo "<h3>Hasil Pembelian:</h3>";
-        echo "<p>Nama Customer: $customer</p>";
-        echo "<p>Produk Pilihan: $produk</p>";
-        echo "<p>Jumlah Beli: $jumlah</p>";
-        echo "<p>Total Harga Produk: Rp. " . number_format($total_harga_produk, 0, ',', '.') . "</p>";
-        echo "<p>Total Pembelian: " . $_SESSION['total_pembelian'] . " barang</p>";
-        echo "<p>Total Harga Keseluruhan: Rp. " . number_format($_SESSION['total_harga'], 0, ',', '.') . "</p>";
+        echo "<div class='result-card'>";
+        echo "<div class='result-header'><h3>Hasil Pembelian</h3></div>";
+        echo "<div class='result-content'>";
+        echo "<div class='result-item'><strong>Nama Customer:</strong> $customer</div>";
+        echo "<div class='result-item'><strong>Produk Pilihan:</strong> $produk</div>";
+        echo "<div class='result-item'><strong>Jumlah Beli:</strong> $jumlah</div>";
+        echo "<div class='result-item'><strong>Total Harga Produk:</strong> Rp. " . number_format($total_harga_produk, 0, ',', '.') . "</div>";
+        echo "<div class='result-item'><strong>Total Pembelian:</strong> " . $_SESSION['total_pembelian'] . " barang</div>";
+        echo "<div class='result-item'><strong>Total Harga Keseluruhan:</strong> Rp. " . number_format($_SESSION['total_harga'], 0, ',', '.') . "</div>";
+        echo "</div></div>";
     }
     ?>
 </div>
