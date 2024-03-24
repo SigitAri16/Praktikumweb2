@@ -65,6 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>BMI Calculator</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
         .container {
             margin-top: 50px;
@@ -75,6 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .result-table th, .result-table td {
             padding: 10px;
             border: 1px solid #ccc;
+        }
+        .form-icon {
+            position: relative;
+            top: 8px;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -87,28 +94,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST">
                 <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" name="nama" id="nama" class="form-control" required>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user form-icon"></i></span>
+                        </div>
+                        <input type="text" name="nama" id="nama" class="form-control" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="berat">Berat Badan (kg)</label>
-                    <input type="number" name="berat" id="berat" class="form-control" required>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-weight form-icon"></i></span>
+                        </div>
+                        <input type="number" name="berat" id="berat" class="form-control" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="tinggi">Tinggi Badan (cm)</label>
-                    <input type="number" name="tinggi" id="tinggi" class="form-control" required>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-tape form-icon"></i></span>
+                        </div>
+                        <input type="number" name="tinggi" id="tinggi" class="form-control" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="umur">Umur</label>
-                    <input type="number" name="umur" id="umur" class="form-control" required>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-birthday-cake form-icon"></i></span>
+                        </div>
+                        <input type="number" name="umur" id="umur" class="form-control" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="jk">Jenis Kelamin</label>
-                    <select class="form-control" name="jk" id="jk" required>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-venus-mars form-icon"></i></span>
+                        </div>
+                        <select class="form-control" name="jk" id="jk" required>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Hitung BMI</button>
+           
             </form>
         </div>
 
@@ -117,24 +150,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="result-container">
                 <h2 class="mt-5">Hasil BMI</h2>
                 <table class="table result-table">
-                    <tr>
-                        <th>Nama</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Umur</th>
-                        <th>Berat Badan (kg)</th>
-                        <th>Tinggi Badan (cm)</th>
-                        <th>BMI</th>
-                        <th>Keterangan</th>
-                    </tr>
-                    <tr>
-                        <td><?php echo $data['nama']; ?></td>
-                        <td><?php echo $data['gender']; ?></td>
-                        <td><?php echo $data['umur']; ?></td>
-                        <td><?php echo $data['bb']; ?></td>
-                        <td><?php echo $data['tb']; ?></td>
-                        <td><?php echo $data['bmi']; ?></td>
-                        <td><?php echo $data['ket']; ?></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Umur</th>
+                            <th>Berat Badan (kg)</th>
+                            <th>Tinggi Badan (cm)</th>
+                            <th>BMI</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $data['nama']; ?></td>
+                            <td><?php echo $data['gender']; ?></td>
+                            <td><?php echo $data['umur']; ?></td>
+                            <td><?php echo $data['bb']; ?></td>
+                            <td><?php echo $data['tb']; ?></td>
+                            <td><?php echo $data['bmi']; ?></td>
+                            <td><?php echo $data['ket']; ?></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -144,11 +181,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
-
-
-</body>
-</html>
-
 
 <br>
 <br>
@@ -185,25 +217,30 @@ $array = [
 ];
 ?>
 
-<table border="1">
-    <tr>
-        <th>Nama</th>
-        <th>Jenis Kelamin</th>
-        <th>Umur</th>
-        <th>Berat Badan (kg)</th>
-        <th>Tinggi Badan (cm)</th>
-        <th>Indeks Massa Tubuh (BMI)</th>
-        <th>Keterangan</th>
-    </tr>
-    <?php foreach ($array as $person): ?>
+<table class="table" border="1">
+    <thead>
         <tr>
-            <td><?php echo $person["nama"]; ?></td>
-            <td><?php echo $person["gender"]; ?></td>
-            <td><?php echo $person["umur"]; ?></td>
-            <td><?php echo $person["bb"]; ?></td>
-            <td><?php echo $person["tb"]; ?></td>
-            <td><?php echo $person["bmi"]; ?></td>
-            <td><?php echo $person["ket"]; ?></td>
+            <th>Nama</th>
+            <th>Jenis Kelamin</th>
+            <th>Umur</th>
+            <th>Berat Badan (kg)</th>
+            <th>Tinggi Badan (cm)</th>
+            <th>Indeks Massa Tubuh (BMI)</th>
+            <th>Keterangan</th>
         </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+        <?php foreach ($array as $person): ?>
+            <tr>
+                <td><?php echo $person["nama"]; ?></td>
+                <td><?php echo $person["gender"]; ?></td>
+                <td><?php echo $person["umur"]; ?></td>
+                <td><?php echo $person["bb"]; ?></td>
+                <td><?php echo $person["tb"]; ?></td>
+                <td><?php echo $person["bmi"]; ?></td>
+                <td><?php echo $person["ket"]; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
+
