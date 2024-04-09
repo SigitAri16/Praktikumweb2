@@ -50,11 +50,7 @@ $praktikum = [
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= $url ?>kelurahan">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Kelurahan</span>
-        </a>
+    
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="<?= $url ?>pasien">
@@ -77,12 +73,7 @@ $praktikum = [
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= $url ?>unitkerja">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Unitkerja</span>
-        </a>
-    </li>
+    
 
 
 </ul>
