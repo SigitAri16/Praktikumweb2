@@ -42,6 +42,22 @@ class DashboardController extends Controller
 
         return view('dashboard.laporan', compact('title', 'tahun', 'data_mhs'));
     }
+    public function pegawai()
+{
+    // Data contoh pegawai
+    $pegawais = [
+        (object) ['nama' => 'Andi'],
+        (object) ['nama' => 'Budi'],
+        (object) ['nama' => 'Cici'],
+    ];
+
+    // Debugging data pegawai
+    dd($pegawais);
+
+    // Mengirim data pegawai ke view 'pegawai.index'
+    return view('pegawai.index', compact('pegawais'));
+}
+
 
     public function create()
     {
