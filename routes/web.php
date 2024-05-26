@@ -39,3 +39,8 @@ Route::get('/laporan', [DashboardController::class, 'laporan']);
 
 Route::get('/admin',[ADMIN\DashboardController::class, "index"]);
 Route::get('/pegawai', [PegawaiController::class, 'index']);
+Route::get('admin/jabatan', [ADMIN\PositionController::class, "index"]);
+Route::get('admin/genre', [ADMIN\GenresController::class,"index"]);
+Route::get('admin/member', [ADMIN\MembersController::class,"index"]);
+Route::get('admin/book', [ADMIN\BooksController::class,"index"]);
+Route::get('admin/employees', [ADMIN\EmployeesController::class,"index"]);
