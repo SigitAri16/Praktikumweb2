@@ -44,3 +44,4 @@ Route::get('admin/genre', [ADMIN\GenresController::class,"index"]);
 Route::get('admin/member', [ADMIN\MembersController::class,"index"]);
 Route::get('admin/book', [ADMIN\BooksController::class,"index"]);
 Route::get('admin/employees', [ADMIN\EmployeesController::class,"index"]);
+Route::get('admin/user', [ADMIN\UsersController::class,"index"]);
