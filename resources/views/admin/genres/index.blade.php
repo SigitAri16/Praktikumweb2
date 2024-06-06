@@ -36,12 +36,13 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+                                <a href="{{ route('genres.create') }}" class="btn btn-primary btn-sm">Tambah</a>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Name</th>
-                                            <th>Actions</th>
+                                            <th>Nama Genre</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,12 +51,15 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $genre->name }}</td>
                                                 <td>
-                                            <a href="">edit</a>
-                                                    <a href="">Hapus</a>
+                                                    <a href="{{ route('genre.edit', $genre->id) }}" class="btn btn-warning btn-sm">edit</a>
+
+                                                    <form method="post" action="{{ route('genre.delete', $genre->id) }}" style="display:inline;">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button onclick="if(!confirm('Apakah Anda yakin ingin menghapus genre ini?')) {return false}" type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                                    </form>
                                                 </td>
-                                            </tr> 
-                                        </form>      
-                                    
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

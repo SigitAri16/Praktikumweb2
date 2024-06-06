@@ -1,22 +1,30 @@
 @extends('admin.layouts.app')
 
+@push('style')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+@endpush
+
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Pegawai</h1>
+                    <h1>Pengguna</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url('admin') }}">Beranda</a></li>
-                        <li class="breadcrumb-item active">Pegawai</li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Users</li>
                     </ol>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -24,40 +32,32 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <a href="{{ route ('employees.create') }}" class="btn btn-primary btn-sm">Tambah Pegawai</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah Pengguna</a>
                             </h3>
                         </div>
                         <div class="card-body">
-                            <table id="employeTable" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Alamat</th>
-                                        <th>Nohp</th>
                                         <th>Email</th>
-                                        <th>Jabatan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($employees as $employe)
+                                    @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $employe->nama }}</td>
-                                            <td>{{ $employe->tanggal_lahir }}</td>
-                                            <td>{{ $employe->alamat }}</td>
-                                            <td>{{ $employe->nohp }}</td>
-                                            <td>{{ $employe->email }}</td>
-                                            <td>{{ optional($employe->position)->nama}}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
                                             <td>
-                                                <a href="{{ route('employees.edit', $employe->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('employees.destroy', $employe->id) }}" method="POST" style="display:inline-block;">
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
-                                                            onclick="return confirm('Hapus Pegawai Ini?')">Hapus</button>
+                                                            onclick="return confirm('Hapus Pengguna Ini?')">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -74,6 +74,7 @@
 @endsection
 
 @push('script')
+    <!-- DataTables & Plugins -->
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -86,15 +87,14 @@
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $("#employeTable").DataTable({
+        $(function() {
+            $("#example1").DataTable({
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#employeTable_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
 @endpush

@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="{{asset('assets/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -10,7 +10,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('assets/img/uni.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('assets/img/uni.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Admin Turu</a>
@@ -39,32 +39,62 @@
                     </ul>
                 </li>
 
-                <!-- Pegawai -->
-                <li id="pegawai" class="nav-item draggable">
-                    <a href="#" class="nav-link">
+                <!-- Employees -->
+                <li id="employees" class="nav-item draggable">
+                    <a href="{{ route('employees.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Pegawai
+                            Employees
                         </p>
                     </a>
                 </li>
 
-                <!-- Laporan -->
-                <li id="laporan" class="nav-item draggable">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
+                <!-- Genre -->
+                <li id="genre" class="nav-item draggable">
+                    <a href="{{ route('genres.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th-list"></i>
                         <p>
-                            Laporan
+                            Genre
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Book -->
+                <li id="book" class="nav-item draggable">
+                    <a href="{{ route('books.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Book
+                        </p>
+                    </a>
+                </li>
+
+                <!-- User -->
+                <li id="user" class="nav-item draggable">
+                    <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            User
                         </p>
                     </a>
                 </li>
 
                 <!-- Position -->
                 <li id="position" class="nav-item draggable">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('positions.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-briefcase"></i>
                         <p>
                             Position
+                        </p>
+                    </a>
+                </li>
+
+                <!-- Members -->
+                <li id="members" class="nav-item draggable">
+                    <a href="{{ route('members.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-friends"></i>
+                        <p>
+                            Members
                         </p>
                     </a>
                 </li>

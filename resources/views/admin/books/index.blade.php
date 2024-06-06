@@ -35,7 +35,9 @@
                                 <h3 class="card-title">Data Table</h3>
                             </div>
                             <!-- /.card-header -->
+                           
                             <div class="card-body">
+                             <a href="{{ route('books.create') }}" class="btn btn-primary btn-sm">Tambah</a>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -58,8 +60,12 @@
                                                 <td>{{ $book->penerbit }}</td>
                                                 <td>{{ $book->genre->name }}</td>
                                                 <td>
-                                                 <a href="">edit</a>
-                                                    <a href="">Hapus</a>
+                                                <a href="{{ route('book.edit', $book->id) }}" class="btn btn-warning btn-sm">edit</a>
+
+                                                    <form method="post" action="{{ route('book.delete', $book->id) }}" style="display:inline;">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button onclick="if(!confirm('yang bener aja mau di apus?')) {return false}" type="submit" class="btn btn-danger btn-sm">Hapus</button>
                                                 </td>
                                             </tr>  
                                                 </td>
