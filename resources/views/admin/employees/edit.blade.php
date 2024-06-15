@@ -27,7 +27,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                  <a href="{{ route('employee.index') }}" class="btn btn-success btn-sm">Kembali</a>
+                  <a href="{{ route('employees.index') }}" class="btn btn-success btn-sm">Kembali</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -41,30 +41,34 @@
                     </div>
                   @endif
                   
-                  <form action="{{ route('employee.store') }}" method="POST">
+                  <form action="{{ route('employees.store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="id" value="{{ $employee->id }}">
+                    <input type="hidden" name="id" value="{{ $employees->id }}">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" value="{{ old('nama', $employee->nama) }}" name="nama" id="nama" class="form-control col-md-8" required>
+                        <input type="text" value="{{ old('nama', $employees->nama) }}" name="nama" id="nama" class="form-control col-md-8" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal_Lahir</label>
+                        <input type="date" value="{{ old('tanggal_lahir', $employees->tanggal_lahir) }}" name="nama" id="nama" class="form-control col-md-8" required>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" value="{{ old('alamat', $employee->alamat) }}" class="form-control" id="alamat" name="alamat" required>
+                        <input type="text" value="{{ old('alamat', $employees->alamat) }}" class="form-control" id="alamat" name="alamat" required>
                     </div>
                     <div class="form-group">
                         <label for="nohp">Telepon</label>
-                        <input type="text" value="{{ old('nohp', $employee->nohp) }}" class="form-control" id="nohp" name="nohp" required>
+                        <input type="text" value="{{ old('nohp', $employees->nohp) }}" class="form-control" id="nohp" name="nohp" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" value="{{ old('email', $employee->email) }}" class="form-control" id="email" name="email" required>
+                        <input type="email" value="{{ old('email', $employees->email) }}" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="positions_id">Jabatan</label>
                         <select class="form-control" id="positions_id" name="positions_id" required>
                             @foreach ($positions as $position)
-                                <option value="{{ $position->id }}" {{ (old('positions_id', $employee->positions_id) == $position->id) ? 'selected' : '' }}>
+                                <option value="{{ $position->id }}" {{ (old('positions_id', $employees->positions_id) == $position->id) ? 'selected' : '' }}>
                                     {{ $position->nama }}
                                 </option>
                             @endforeach

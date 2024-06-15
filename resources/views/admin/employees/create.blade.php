@@ -28,7 +28,7 @@
                     <!-- /.card -->
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <a href="{{ route('employee.index') }}" class="btn btn-success btn-sm">Kembali</a>
+                            <a href="{{ route('employees.index') }}" class="btn btn-success btn-sm">Kembali</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -41,26 +41,30 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('employee.store') }}" method="POST">
+                            <form action="{{ route('employees.store') }}" method="POST">
                                 @csrf
-                                @if(isset($employee))
-                                    <input type="hidden" name="id" value="{{ $employee->id }}">
+                                @if(isset($employees))
+                                    <input type="hidden" name="id" value="{{ $employees->id }}">
                                 @endif
                                 <div class="form-group">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" name="nama" id="nama" class="form-control col-md-8" value="{{ old('nama', $employee->nama ?? '') }}" required>
+                                    <label for="name">Nama</label>
+                                    <input type="text" name="nama" id="nama" class="form-control col-md-8" value="{{ old('nama', $employees->nama ?? '') }}" required>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="name">Taggal Lahir</label>
+                                    <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control col-md-8" value="{{ old('tanggal_lahir', $employees->tanggal_lahir ?? '') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
-                                    <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat', $employee->alamat ?? '') }}" required>
+                                    <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat', $employees->alamat ?? '') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="nohp">Telepon</label>
-                                    <input type="text" class="form-control" id="nohp" name="nohp" value="{{ old('nohp', $employee->nohp ?? '') }}" required>
+                                    <input type="text" class="form-control" id="nohp" name="nohp" value="{{ old('nohp', $employees->nohp ?? '') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $employee->email ?? '') }}" required>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $employees->email ?? '') }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="posisi_id">Jabatan</label>

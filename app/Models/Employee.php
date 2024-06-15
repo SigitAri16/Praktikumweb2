@@ -13,8 +13,9 @@ class Employee extends Model
         'nama',
         'tanggal_lahir',
         'alamat',
-        'telepon',
-        'posisi_id'
+        'email',
+        'nohp',
+        'positions_id'
     ];
 
     public function posisi()

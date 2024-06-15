@@ -52,8 +52,8 @@
                                             <td>{{ $employe->email }}</td>
                                             <td>{{ optional($employe->position)->nama}}</td>
                                             <td>
-                                                <a href="{{ route('employees.edit', $employe->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('employees.destroy', $employe->id) }}" method="POST" style="display:inline-block;">
+                                                <a href="{{ route('employee.edit', $employe->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form action="{{ route('employee.destroy', $employe->id) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"

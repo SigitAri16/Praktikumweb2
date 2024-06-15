@@ -1,52 +1,24 @@
 <?php
-
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin as ADMIN;
-use App\Http\Controllers\PegawaiController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-/**
- * Route Salam
- * Untuk membuat halaman salam dengan tampilan yang ditentukan
- */
-Route::get('/salam', function () {
-    return "Assalamualaikum STTNF, Selamat Datang";
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/profile', function() {
-    return view('profile');
-});
-
-Route::get('/dashboard', [DashboardController::class, 'index']);
-
-Route::get('/laporan', [DashboardController::class, 'laporan']);
-
-Route::get('/admin',[ADMIN\DashboardController::class, "index"]);
-Route::get('/pegawai', [PegawaiController::class, 'index']);
-Route::get('admin/jabatan', [ADMIN\PositionController::class, "index"]);
-Route::get('admin/genre', [ADMIN\GenresController::class,"index"]);
-Route::get('admin/member', [ADMIN\MembersController::class,"index"]);
-Route::get('admin/book', [ADMIN\BooksController::class,"index"]);
-Route::get('admin/employees', [ADMIN\EmployeesController::class,"index"]);
-Route::get('admin/user', [ADMIN\UsersController::class,"index"]);
 Route::prefix('/admin')->group(function() {
-    Route::get('/', [ADMIN\DashboardController::class, "index"]);
+    Route::get('/', [ADMIN\DashboardController::class, "index"])->name('dashboard');;
     Route::get('/jabatan', [ADMIN\PositionController::class, "index"])->name('positions.index');
     Route::get('/jabatan/create', [ADMIN\PositionController::class, "create"])->name('positions.create');
     Route::post('/jabatan/store', [ADMIN\PositionController::class, "store"])->name('positions.store');
@@ -77,7 +49,7 @@ Route::prefix('/admin')->group(function() {
     Route::get('/employees', [ADMIN\EmployeesController::class, "index"])->name('employees.index');
     Route::get('/employees/create', [ADMIN\EmployeesController::class, "create"])->name('employees.create');
     Route::post('/employees/store', [ADMIN\EmployeesController::class, "store"])->name('employees.store');
-    Route::delete('/employees/delete/{id}', [ADMIN\EmployeesController::class, "delete"])->name('employee.delete');
+    Route::delete('/employees/delete/{id}', [ADMIN\EmployeesController::class, "delete"])->name('employee.destroy');
     Route::get('/employees/edit/{id}', [ADMIN\EmployeesController::class, "edit"])->name('employee.edit');
 
 
@@ -88,3 +60,6 @@ Route::prefix('/admin')->group(function() {
     Route::put('/users/update/{id}', [ADMIN\UsersController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [ADMIN\UsersController::class, 'destroy'])->name('users.destroy');
 });
+require __DIR__.'/auth.php';
+
+

@@ -27,7 +27,7 @@ public function create()
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
             'nohp' => 'required',
@@ -44,13 +44,13 @@ public function create()
     {
         $employees = Employee::findOrFail($id);
         $positions = Position::all();
-        return view('admin.employees.edit', compact('employee', 'positions'));
+        return view('admin.employees.edit', compact('employees', 'positions'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
             'nohp' => 'required',
@@ -64,7 +64,7 @@ public function create()
         return redirect()->route('employees.index')->with('success', 'Pegawai berhasil diperbarui');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         $employees = Employee::findOrFail($id);
         $employees->delete();
