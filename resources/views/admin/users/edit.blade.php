@@ -42,6 +42,14 @@
                                     <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control" id="password">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <select name="role" id="role" class="form-control" required>
+                                        <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                        <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                                    </select>
+                                </div>
                                 <div class="d-flex justify-content-center">
                                   <button type="submit" class="btn btn-primary">Edit</button>
                               </div>

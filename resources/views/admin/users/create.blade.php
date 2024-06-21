@@ -41,6 +41,12 @@
                                     <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control" id="password" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <select name="role" id="role" class="form-control" required>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
                                 <div class="d-flex justify-content-center">
                                   <input type="submit"  value="Tambah" class="btn btn-primary">
                               </div>
